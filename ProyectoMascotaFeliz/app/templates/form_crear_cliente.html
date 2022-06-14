@@ -1,18 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-CL">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <title>agregando cliente</title>
-    {% load static %}
-    <link href="{% static 'css/estilooo.css' %}" type="text/css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
+  
+  {% load static %}
+  <link rel="stylesheet icon" href="{% static 'img/dog (1).png' %}">
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <link href="{% static 'css/bootstrap.min.css' %}" type="text/css" rel="stylesheet"> 
+  <link href="{% static 'css/bootstrap.css' %}" type="text/css" rel="stylesheet"> 
+  <link href="{% static 'css/styles' %}" type="text/css" rel="stylesheet">
+  
+  <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
-    
+  <title>Crear Cliente - Tu Mascota Feliz</title>
+
     <style>
         body {
             font-family: Arial;
@@ -67,139 +79,185 @@
 
 </head>
 <body>
-  <nav class="navbar navbar-expand-sm navbar-light bg-light">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    
-
-    <a class="navbar-brand" href="#">
-      <img src="{% static 'img/logo.png' %}" width="100" height="100" alt="">
-    </a>
-    
-
-    <div class="collapse navbar-collapse" id="opciones"> 
-      {% load static %}  
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'index' %}">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'quienes_somos' %}">Quienes somos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'nuestros_productos' %}">Nuestros productos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'formularios' %}">¿Quieres Registrarte?</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'monedas' %}">Intercambio de monedas</a>
-        </li>  
-        {% if user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'cliente' %}">ver clientes</a>
-          {% else %}
-          <a class="nav-link" href="#">No tiene permisos</a>
-          {% endif %}
-        {% if user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'producto' %}">ver productos</a>
-          {% else %}
-          <a class="nav-link" href="#">No tiene permisos</a>
-          {% endif %}
-        <li class="nav-item">
-          {% if user.is_authenticated %}
-          <a class="nav-link" href="{% url 'logout' %}">cerrar sesion</a>
-          {% else %}
-          <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
-          {% endif %}
-        </li>           
-      </ul>
+  <nav class="navbar navbar-expand-md navbar-light bg-light mb-4" id="barraNav">
+    {% load static %} 
+      <a href="{% url 'home' %}" id="logoMascotaFeliz">
+          <img src="{% static 'img/dog (1).png' %}" alt="logoMascotaFeliz" width="40px">Tu Mascota Feliz
+      </a>
+      <!-- botón hamburguesa -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+          aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'home' %}">Inicio</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'galeria' %}">Nuestros Productos</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'somos' %}">¿Quiénes somos?</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'feriados' %}">Feriados</a>
+            </li>
+          </ul>
+        <br>
+            
+    {% if user.is_authenticated %}
+    <div>
+        <a href="#">Bienvenid@ {{user.username}}</a>
+        <a href="{% url 'producto' %}" id="userBookStop" class="btn btn-success">Productos </a>
+        <a href="{% url 'cliente' %}" id="userBookStop" class="btn btn-success">Clientes </a>
+        <a href="{% url 'logout' %}" class="btn btn-primary">Cerrar Sesión</a>
+    </div>     
+    {% else %} 
+    <div>
+        <a href="{% url 'register' %}" id="userBookStop" class="btn btn-success">Registrarte </a>
+        <a href="{% url 'login' %}" class="btn btn-primary">Iniciar Sesión </a>
+    {% endif %}    
+        
     </div>
-  </nav>
+</div>
+</nav>
+<main role="main" class="container">
+  <div class="c-wrapper">
+      <div id="carousel1" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+              <li data-target="#carousel1" data-slide-to="0" class="active"></li>
+          </ol>
+          <div class="carousel-inner" style="border-radius: 7px;">
+              <div class="carousel-item active">
+                <img class="img-fluid" src="{% static 'img/homebanner.png' %}"
+                      alt="">
+              </div>
+      </div>
+  </div>
+  <hr>
 
-
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+           <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                <div class="card" style="border-radius: 15px;">
+                   <div class="card-body p-5">
     <div class="container">
         <div class="row">
-            <h2>agregando clientes</h2>
+            <h2>Agrega un cliente</h2>
+            <br><br><br>
         </div>
         {% if user.is_authenticated %}
             <div class="row">
                 <form method="POST" action="#" id="formulario_cli">
                     {% csrf_token %}
-
                     <div class="form-group">
                         {{ cliente_form.idCliente.label }}
                         {{ cliente_form.idCliente }}
                     </div>
-                    <br><br><br>
-                     
+                    <br>
                     <div class="form-group">
                         {{ cliente_form.nombreCliente.label }}
                         {{ cliente_form.nombreCliente }}
                     </div>
-                    <br><br><br>
-
+                    <br>
                     <div class="form-group">
                         {{ cliente_form.apellido.label }}
                         {{ cliente_form.apellido }}
                     </div>
-
+                    <br>
                     <div class="form-group">
                       {{ cliente_form.comuna.label }}
                       {{ cliente_form.comuna }}
                   </div>
-                    <br><br><br>
-
-
-                    
-
-                    <br><br>
-                    <div class="row">
-                        <div class="col-md">
-
-                            <input type="submit" class="btn btn-dark" value="Enviar">
-                            
-                        </div>
-                    </div>
-					
+                    <br>
+                    <div class="d-flex justify-content-right">
+                        <input class="btn btn-lg btn-success btn-block" type="submit"
+                              value="Envíar">
+                      </div>
+                      <br>
+                      <a href="{% url 'cliente' %}" class="btn btn-danger">Regresar</a>  	
                 </form>
             </div>
         {% else %} 
             <h2 style="color:red; text-align:center">No tiene permisos para crear clientes</h2>     
         {% endif %}
     </div>
-    <br><br><br><br>
-
-
-
-    <footer>
-        <div class="container">
-          <div class="row">
-            <div class="col-4">
-              <img src="{% static 'img/logo.png' %}" width="100" height="100">
-            </div>
-            <div class="col-4">
-              <h2 onmouseover="style.color = 'green'" onmouseout="style.color= 'white'">Integrantes</h2>
-              <p>Ignacio Albornoz <br> Izan Cardenas</p>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-4">
-              <h2>Contactenos</h2>
-              <a href="https://www.instagram.com/nachou._._/"><img src="{% static 'img/instagram logo.png' %}" width="30" height="30"></a>
-              <a href="https://twitter.com/jardineryx9191" ><img src="{% static 'img/twitterlogo.png' %}" width="30" height="30"></a>
-              <a href="https://www.facebook.com/ignacio.albornoz.750/"><img src="{% static 'img/facebook logo.png' %}" width="30" height="30"></a> <br>
-              <p>+56991338341(Ignacio Albornoz) <BR> +56950199023(Izan Cardenas)</p>
-            </div>
+    <br><br><br>
+  </main>
+  <footer>
+      <div class="row col-12">
+          <div class="col-lg-2">
+              <img src="{% static 'img/dog (1).png' %}" alt="logoMascotaFeliz" width="60px">
           </div>
-          <div class="row">
-            <div class="col-6">
-              <a class="inicio" href="{url 'index' %}">INICIO</a>
-            </div>
-            <div class="col-6">
-              <p class="p">2022 copyright todos los derechos reservados</p>
-            </div>
+          <div class="col-lg-2">
+              <a href="{% url 'home' %}" id="linkFooter"><strong>INICIO</strong></a>
           </div>
-        </div>
+          <div class="col-lg-2">
+            <a href="{% url 'galeria' %}" id="linkFooter"><strong>PRODUCTOS</strong></a>
+          </div>
+          <div class="col-lg-2">
+            <a href="{% url 'somos' %}" id="linkFooter"><strong>¿QUIÉNES SOMOS?</strong></a>
+          </div>
+
+          <div class="col-lg-2">
+              <strong>Síguenos</strong>
+              <br><br>
+              <div class="row">
+                  <img src="{% static 'img/2000px-Facebook_font_awesome.svg.png' %}" alt="" width="30px" height="30px"
+                      style=" margin-left: 15px;">
+                  <img src="{% static 'img/twitter.png' %}" alt="" width="30px" height="30px" style=" margin-left: 10px;">
+                  <img src="{% static 'img/Instagram.png' %}" alt="" width="30px" height="30px" style=" margin-left: 10px;">
+
+              </div>
+          </div>
+          <div class="col-lg-2">
+
+              <strong>Contacto</strong>
+              <br><br>
+              <div class="row">
+                  <img src="{% static 'img/location.png' %}" alt="" width="20px" height="20px"
+                      style="margin-right: 10px; margin-left: 15px;">
+                  <p>Av. Esq. Blanca 501, Maipú</p>
+              </div>
+              <div class="row">
+                  <img src="{% static 'img/fono.png' %}" alt="" width="20px" height="20px"
+                      style="margin-right: 10px; margin-left: 15px;">
+                  <p>225554000</p>
+              </div>
+              <div class="row">
+                  <img src="{% static 'img/email.png' %}" alt="" width="20px" height="20px"
+                      style="margin-right: 10px; margin-left: 15px;">
+                  <p>consulta@tumascotafeliz.cl</p>
+              </div>
+              <br><br><br>
+
+              <p>Cristian Jara Carter &copy; Copyright Derechos reservados.
+                  <br><br>Iconos: https://www.flaticon.com/
+              </p>
+          </div>
+      </div>
+  </footer>
+
+  <!-- script que permite mostrar/ocultar navbar haciendo scroll -->
+  <script type="text/javascript">
+      let ubicacionInicial = window.pageYOffset;
+      window.onscroll = function () {
+          let ubicacionPosterior = window.pageYOffset;
+          if (ubicacionInicial >= ubicacionPosterior) {
+              document.getElementById("barraNav").style.top = "0";
+          }
+          else {
+              document.getElementById("barraNav").style.top = "-70px";
+          }
+          ubicacionInicial = ubicacionPosterior
+      }
+  </script>
+
+
+
+
 </body>
 </html>

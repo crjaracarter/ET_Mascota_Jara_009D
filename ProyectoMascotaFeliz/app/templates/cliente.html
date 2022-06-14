@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
-  
   {% load static %}
   <link rel="stylesheet icon" href="{% static 'img/dog (1).png' %}">
   
@@ -23,8 +22,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
- 
-  <title>Nuestros Productos - Tu Mascota Feliz</title>
+  
+  <title>Clientes - Tu Mascota Feliz</title>
 </head>
 <body>
   <nav class="navbar navbar-expand-md navbar-light bg-light mb-4" id="barraNav">
@@ -57,11 +56,11 @@
             
     {% if user.is_authenticated %}
     <div>
-      <a href="#">Bienvenid@ {{user.username}}</a>
-      <a href="{% url 'producto' %}" id="userBookStop" class="btn btn-success">Productos </a>
-      <a href="{% url 'cliente' %}" id="userBookStop" class="btn btn-success">Clientes </a>
-      <a href="{% url 'logout' %}" class="btn btn-primary">Cerrar Sesión</a>
-  </div>    
+        <a href="#">Bienvenid@ {{user.username}}</a>
+        <a href="{% url 'producto' %}" id="userBookStop" class="btn btn-success">Productos </a>
+        <a href="{% url 'cliente' %}" id="userBookStop" class="btn btn-success">Clientes </a>
+        <a href="{% url 'logout' %}" class="btn btn-primary">Cerrar Sesión</a>
+    </div>     
     {% else %} 
     <div>
         <a href="{% url 'register' %}" id="userBookStop" class="btn btn-success">Registrarte </a>
@@ -70,63 +69,99 @@
         
     </div>
 </div>
-</nav>
-  <main role="main" class="container">
-    <div class="c-wrapper">
-        <div id="carousel1" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carousel1" data-slide-to="0" class="active"></li>
+</nav> 
+<main role="main" class="container">
+  <div class="c-wrapper">
+      <div id="carousel1" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+              <li data-target="#carousel1" data-slide-to="0" class="active"></li>
+              <li data-target="#carousel1" data-slide-to="1"></li>
+              <li data-target="#carousel1" data-slide-to="2"></li>
+          </ol>
+          <!-- diapositivas -->
+          {% load static %} 
+          <div class="carousel-inner" style="border-radius: 7px;">
+              <div class="carousel-item active">
+                <img class="img-fluid" src="{% static 'img/homebanner.png' %}"
+                      alt="">
 
-            </ol>
-            <div class="carousel-inner" style="border-radius: 7px;">
-                <div class="carousel-item active">
-                  <img class="img-fluid" src="{% static 'img/homebanner.png' %}"
-                        alt="">
+              </div>
+              {% load static %} 
+              <div class="carousel-item ">
+                <a href="{% url 'galeria' %}"><img class="img-fluid" src="{% static 'img/homebanner2.png' %}" alt="">
 
-                </div>
-        </div>
-    </div>
-    <hr>
-    <div class="row">       
-        <div class="col-md">        
-            <div class="card">
+              </div>
+              {% load static %} 
+              <div class="carousel-item">
+                <a href="{% url 'somos' %}"><img class="img-fluid" src="{% static 'img/homebanner3.png' %}" alt="">
 
+              </div>
+          </div>
+          <!-- botones de desplazamiento a izquierda y derecha -->
+          <a class="carousel-control-prev" href="#carousel1" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carousel1" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+          </a>
+      </div>
+  </div>
+<hr>
+<div class="row">       
+    <div class="col-md">        
+        <div class="card">
       <table class="table">
         <thead>
+          <div class="row">
             <tr>
-                <th>Id Producto</th>
-                <th>Nombre del Producto</th>
-                <th>Modificar Producto</th>
-                <th>Eliminar Producto</th>
+              <div class="col-sm-12">
+                <th>Id cliente</th>
+                <th>Nombre del Cliente</th>
+                <th>Apellido del Cliente</th>
+                <th>Comuna del Cliente</th>
+                <th>Modificar Cliente</th>
+                <th>Eliminar Cliente</th>
+              </div>
             </tr>
         </thead>
         <tbody>
-            {% for ve in productos %}
+            {% for ve in clientes %}
             <tr>
-                <td>{{ve.idProducto }}</td>
-                <td>{{ve.nombreProducto }}</td>
+                <td>{{ ve.idCliente }}</td>
+                <td>{{ ve.nombreCliente }}</td>
+                <td>{{ ve.apellido }}</td>
+                <td>{{ ve.comuna }}</td>
 
                 {% if user.is_authenticated %}
-                        <td><a href="{% url 'form_mod_prod' ve.idProducto %}" 
-                            class="btn btn-primary">Modificar</a></td>
-                        <td><a href="{% url 'form_del_producto' ve.idProducto %}" class="btn btn-danger">Eliminar</a></td>
+
+                        <td><a href="{% url 'form_mod_cli' ve.idCliente %}" 
+                            class="btn btn-success">Modificar</a></td>
+
+                          <div class="col-sm-12">
+                          <td><a href="{% url 'form_del_cliente' ve.idCliente %}" class="btn btn-danger">Eliminar</a></td>
                 {% else %} 
                     <td><a href="#">No tiene permisos para modificar</a></td>
                     <td><a href="#" style="color:red;">No tiene permisos para eliminar</a></td>
                 {% endif %}
             </tr>
-
-            
             {% endfor %}
         </tbody>
+      </div>
       </table>
-<div class="container">
-    {% if user.is_authenticated %}
-    <a href="{% url 'form_crear_producto' %}" class="btn btn-primary">Agrega un Producto</a>
-    {% else %} 
-        <h2 style="color:red; text-align:center">No tiene permisos para crear clientes</h2>     
-    {% endif %}
-</div>
+
+      <div class="container">
+        {% if user.is_authenticated %}
+        <a href="{% url 'form_crear_cliente' %}" class="btn btn-primary">Agrega un Cliente</a>
+        {% else %} 
+            <h2 style="color:red; text-align:center">No tiene permisos para crear clientes</h2>     
+        {% endif %}
+    <br><br><br>
+  </div>
+
+
+
 
 </main><br>
 <footer>
@@ -182,22 +217,20 @@
         </div>
     </div>
 </footer>
-
-<!-- script que permite mostrar/ocultar navbar haciendo scroll -->
-<script type="text/javascript">
-    let ubicacionInicial = window.pageYOffset;
-    window.onscroll = function () {
-        let ubicacionPosterior = window.pageYOffset;
-        if (ubicacionInicial >= ubicacionPosterior) {
-            document.getElementById("barraNav").style.top = "0";
+    <script type="text/javascript">
+        let ubicacionInicial = window.pageYOffset;
+        window.onscroll = function () {
+            let ubicacionPosterior = window.pageYOffset;
+            if (ubicacionInicial >= ubicacionPosterior) {
+                document.getElementById("barraNav").style.top = "0";
+            }
+            else {
+                document.getElementById("barraNav").style.top = "-70px";
+            }
+            ubicacionInicial = ubicacionPosterior
         }
-        else {
-            document.getElementById("barraNav").style.top = "-70px";
-        }
-        ubicacionInicial = ubicacionPosterior
-    }
-</script>
-
+    </script>
+  
 
 </body>
 </html>
