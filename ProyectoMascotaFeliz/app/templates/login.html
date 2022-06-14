@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
+  <link rel="icon" href="img/dog (1).png" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet"> 
+  <link href="css/bootstrap.css" type="text/css" rel="stylesheet"> 
+  <link rel="stylesheet" type="text/css" href="css/estilos.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+  <title>Tu Mascota Feliz</title>
+</script>
+<script>
+
+$(function()
+    {
+        $("#formulario").validate({
+            rules: {
+                nombre: "required",
+                email: {
+                    required: true,
+                    email: true
+                },
+                comentarios: "required",
+            },
+            messages: {
+                email: {
+                    required: 'Ingresa tu correo electrónico',
+                    email: 'Formato de correo no válido'
+                },
+                nombre: {
+                    required: 'Ingrese un nombre',
+                },
+                comentarios: {
+                    required: 'Ingrese un comentario',
+                    minlength: 'Caracteres insuficientes'
+                }
+            }
+        });
+
+    });
+
+</script>
+
+
+<style>
+* {box-sizing: border-box}
+
+/* Add padding to containers */
+.container {
+  padding: 16px;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit/register button */
+.registerbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity:10;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+label.error {
+        color: red;
+        width: 300px;
+        font-size: 0.8em;
+        margin-top: -5px;
+        margin-bottom: 10px;
+    }
+
+      .error-control {
+          border: 1px solid red;
+      }
+
+    .gradient-custom-3 {
+/* fallback for old browsers */
+background: #ff812dc2;
+
+/* Chrome 10-25, Safari 5.1-6 */
+background: -webkit-linear-gradient(to right, #ff6600(253, 173, 0, 0.5), #ff6600(143, 211, 244, 0.5));
+
+/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: linear-gradient(to right, #ff6600(132, 250, 176, 0.5), #ff6600(143, 211, 244, 0.5))
+}
+.gradient-custom-4 {
+/* fallback for old browsers */
+background: #ff6600;
+
+/* Chrome 10-25, Safari 5.1-6 */
+background: -webkit-linear-gradient(to right, #ff6600(132, 250, 176, 1), #ff6600(143, 211, 244, 1));
+
+/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: linear-gradient(to right, #ff6600(132, 250, 176, 1), #ff6600(143, 211, 244, 1))
+}
+
+</style>
+<script>
+  $(function()
+    {
+        $("#formulario").validate({
+            rules: {
+                nombre: "required",
+                email: {
+                    required: true,
+                    email: true
+                },
+                comentarios: "required",
+            },
+            messages: {
+                email: {
+                    required: 'Ingresa tu correo electrónico',
+                    email: 'Formato de correo no válido'
+                },
+                nombre: {
+                    required: 'Ingrese un nombre',
+                },
+                comentarios: {
+                    required: 'Ingrese un comentario',
+                    minlength: 'Caracteres insuficientes'
+                }
+            }
+        });
+
+    });
+
+
+
+</script>
+
+</head>
+<body>
+  <nav class="navbar navbar-expand-md navbar-light bg-light mb-4" id="barraNav">
+      <a href="home.html" id="logoMascotaFeliz">
+          <img src="img/dog (1).png" alt="logoMascotaFeliz" width="40px">Tu Mascota Feliz
+      </a>
+      <!-- botón hamburguesa -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+          aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                  <a class="nav-link" href="home.html">Inicio</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="galeria.html">Nuestros Productos</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="somos.html">¿Quiénes somos?</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="feriados.html">Feriados</a>
+            </li>
+          </ul>
+        <br>
+        <div>
+          <a href="login.html" id="userBookStop">
+              <img src="img/user-vector-icon.png" alt="usuarioMascota" width="30px"  >Registrarte/Iniciar sesión 
+          </a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="vh-100 bg-image"
+  style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">Crea una cuenta</h2>
+
+              <form id="formulario" action="home.html">
+
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example1cg" name="nombre" id="nombre" >Nombre</label>
+                  <input type="text" id="form3Example1cg" class="form-control form-control-lg" />
+                  
+                </div>
+
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example3cg" name="email" id="email">Email</label>
+                  <input type="email" id="form3Example3cg" class="form-control form-control-lg" />
+                </div>
+
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example4cg" name="contraseña" id="contraseña">Contraseña</label>
+                  <input type="password" id="form3Example4cg" class="form-control form-control-lg" />
+                  
+                </div>
+
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example4cdg">Repite Contraseña</label>
+                  <input type="password" id="form3Example4cdg" class="form-control form-control-lg" />
+                  
+                </div>
+
+                <div class="form-check d-flex justify-content-right mb-5">
+                  <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
+                  <label class="form-check-label" for="form2Example3g">
+                    Acepto los términos de condiciones <a href="#!" class="text-body"><u>Ver aquí</u></a>
+                  </label>
+                </div>
+
+                <div class="d-flex justify-content-right">
+                  <button type="button"
+                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Registrarse</button>
+                </div>
+
+                <p class="text-center text-muted mt-5 mb-0">¿Ya tienes una cuenta? <a href="#!"
+                    class="fw-bold text-body"><u>Logeate aquí</u></a></p>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main><br>
+<footer>
+    <div class="row col-12">
+        <div class="col-lg-2">
+            <img src="img/dog (1).png" alt="logoMascotaFeliz" width="60px">
+        </div>
+        <div class="col-lg-2">
+            <a href="home.html" id="linkFooter"><strong>INICIO</strong></a>
+        </div>
+        <div class="col-lg-2">
+          <a href="galeria.html" id="linkFooter"><strong>PRODUCTOS</strong></a>
+        </div>
+        <div class="col-lg-2">
+          <a href="somos.html" id="linkFooter"><strong>¿QUIÉNES SOMOS?</strong></a>
+        </div>
+
+        <div class="col-lg-2">
+            <strong>Síguenos</strong>
+            <br><br>
+            <div class="row">
+                <img src="img/2000px-Facebook_font_awesome.svg.png" alt="" width="30px" height="30px"
+                    style=" margin-left: 15px;">
+                <img src="img/twitter.png" alt="" width="30px" height="30px" style=" margin-left: 10px;">
+                <img src="img/Instagram.png" alt="" width="30px" height="30px" style=" margin-left: 10px;">
+
+            </div>
+        </div>
+        <div class="col-lg-2">
+
+            <strong>Contacto</strong>
+            <br><br>
+            <div class="row">
+                <img src="img/location.png" alt="" width="20px" height="20px"
+                    style="margin-right: 10px; margin-left: 15px;">
+                <p>Av. Esq. Blanca 501, Maipú</p>
+            </div>
+            <div class="row">
+                <img src="img/fono.png" alt="" width="20px" height="20px"
+                    style="margin-right: 10px; margin-left: 15px;">
+                <p>225554000</p>
+            </div>
+            <div class="row">
+                <img src="img/email.png" alt="" width="20px" height="20px"
+                    style="margin-right: 10px; margin-left: 15px;">
+                <p>consulta@tumascotafeliz.cl</p>
+            </div>
+            <br><br><br>
+
+            <p>Cristian Jara Carter &copy; Copyright Derechos reservados.
+                <br><br>Iconos: https://www.flaticon.com/
+            </p>
+        </div>
+    </div>
+</footer>
+
+<!-- script que permite mostrar/ocultar navbar haciendo scroll -->
+<script type="text/javascript">
+    let ubicacionInicial = window.pageYOffset;
+    window.onscroll = function () {
+        let ubicacionPosterior = window.pageYOffset;
+        if (ubicacionInicial >= ubicacionPosterior) {
+            document.getElementById("barraNav").style.top = "0";
+        }
+        else {
+            document.getElementById("barraNav").style.top = "-70px";
+        }
+        ubicacionInicial = ubicacionPosterior
+    }
+</script>
+
+
+
+
+</body>
+</html>
