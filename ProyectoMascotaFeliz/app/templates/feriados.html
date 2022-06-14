@@ -4,15 +4,21 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
-  <link rel="icon" href="img/dog (1).png" />
+  {% load static %}
+  <link rel="stylesheet icon" href="{% static 'img/dog (1).png' %}">
+  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet"> 
-  <link href="css/bootstrap.css" type="text/css" rel="stylesheet"> 
-  <link rel="stylesheet" type="text/css" href="css/estilos.css">
+  {% load static %} 
+  <link href="{% static 'css/bootstrap.min.css' %}" type="text/css" rel="stylesheet"> 
+  <link href="{% static 'css/bootstrap.css' %}" type="text/css" rel="stylesheet"> 
+  <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+  
+  
   <title>Tu Mascota Feliz - Feriados</title>
-  <script src="js/feriados.js"></script>
+  <script src="{% static 'js/feriados.js' %}"></script>
   
   <script type="text/javascript">
     $(document).ready(function()
@@ -38,63 +44,78 @@
 
 </head>
 <body>
-  <nav class="navbar navbar-expand-md navbar-light bg-light mb-4" id="barraNav">
-      <a href="home.html" id="logoMascotaFeliz">
-          <img src="img/dog (1).png" alt="logoMascotaFeliz" width="40px">Tu Mascota Feliz
-      </a>
-      <!-- botón hamburguesa -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-          aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                  <a class="nav-link" href="home.html">Inicio</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="galeria.html">Nuestros Productos</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="somos.html">¿Quiénes somos?</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="feriados.html">Feriados</a>
-            </li>
-          </ul>
-        <br>
+    <nav class="navbar navbar-expand-md navbar-light bg-light mb-4" id="barraNav">
+        {% load static %} 
+          <a href="{% url 'home' %}" id="logoMascotaFeliz">
+              <img src="{% static 'img/dog (1).png' %}" alt="logoMascotaFeliz" width="40px">Tu Mascota Feliz
+          </a>
+          <!-- botón hamburguesa -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+              aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+              <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'home' %}">Inicio</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'galeria' %}">Nuestros Productos</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'somos' %}">¿Quiénes somos?</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'feriados' %}">Feriados</a>
+                </li>
+              </ul>
+            <br>
+                
+        {% if user.is_authenticated %}
         <div>
-            <a href="login.html" id="userBookStop">
-                <img src="img/user-vector-icon.png" alt="usuarioMascota" width="30px"  >Registrarte/Iniciar sesión 
-            </a>
+            <a href="#">Bienvenid@ {{user.username}}</a>
+            <a href="" id="userBookStop" class="btn btn-success">Productos </a>
+            <a href="" id="userBookStop" class="btn btn-success">Clientes </a>
+            <a href="{% url 'logout' %}" class="btn btn-primary">Cerrar Sesión</a>
+        </div>    
+        {% else %} 
+        <div>
+            <a href="{% url 'register' %}" id="userBookStop" class="btn btn-success">Registrarte </a>
+            <a href="{% url 'login' %}" class="btn btn-primary">Iniciar Sesión </a>
+        {% endif %}    
+            
         </div>
     </div>
-  </nav>
+  </nav> 
 
   <main role="main" class="container">
-      <div class="c-wrapper">
-          <div id="carousel1" class="carousel slide" data-ride="carousel">
-              <ol class="carousel-indicators">
-                  <li data-target="#carousel1" data-slide-to="0" class="active"></li>
-                  <li data-target="#carousel1" data-slide-to="1"></li>
-                  <li data-target="#carousel1" data-slide-to="2"></li>
-              </ol>
-              <!-- diapositivas -->
-              <div class="carousel-inner" style="border-radius: 7px;">
-                  <div class="carousel-item active">
-                    <img class="img-fluid" src="img/homebanner.png"
-                          alt="">
+    <div class="c-wrapper">
+        <div id="carousel1" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carousel1" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel1" data-slide-to="1"></li>
+                <li data-target="#carousel1" data-slide-to="2"></li>
+            </ol>
+            <!-- diapositivas -->
+            {% load static %} 
+            <div class="carousel-inner" style="border-radius: 7px;">
+                <div class="carousel-item active">
+                  <img class="img-fluid" src="{% static 'img/homebanner.png' %}"
+                        alt="">
 
-                  </div>
-                  <div class="carousel-item ">
-                    <a href="galeria.html"><img class="img-fluid" src="img/homebanner2.png" alt="">
+                </div>
+                {% load static %} 
+                <div class="carousel-item ">
+                  <a href="{% url 'galeria' %}"><img class="img-fluid" src="{% static 'img/homebanner2.png' %}" alt="">
 
-                  </div>
-                  <div class="carousel-item">
-                    <a href="somos.html"><img class="img-fluid" src="img/homebanner3.png" alt="">
+                </div>
+                {% load static %} 
+                <div class="carousel-item">
+                  <a href="{% url 'somos' %}"><img class="img-fluid" src="{% static 'img/homebanner3.png' %}" alt="">
 
-                  </div>
-              </div>
+                </div>
+            </div>
               <!-- botones de desplazamiento a izquierda y derecha -->
               <a class="carousel-control-prev" href="#carousel1" data-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -132,58 +153,59 @@
     
   </main><br>
   <footer>
-      <div class="row col-12">
-          <div class="col-lg-2">
-              <img src="img/dog (1).png" alt="logoMascotaFeliz" width="60px">
-          </div>
-          <div class="col-lg-2">
-              <a href="home.html" id="linkFooter"><strong>INICIO</strong></a>
-          </div>
-          <div class="col-lg-2">
-            <a href="galeria.html" id="linkFooter"><strong>PRODUCTOS</strong></a>
-          </div>
-          <div class="col-lg-2">
-            <a href="somos.html" id="linkFooter"><strong>¿QUIÉNES SOMOS?</strong></a>
-          </div>
+    <div class="row col-12">
+        <div class="col-lg-2">
+            <img src="{% static 'img/dog (1).png' %}" alt="logoMascotaFeliz" width="60px">
+        </div>
+        <div class="col-lg-2">
+            <a href="{% url 'home' %}" id="linkFooter"><strong>INICIO</strong></a>
+        </div>
+        <div class="col-lg-2">
+          <a href="{% url 'galeria' %}" id="linkFooter"><strong>PRODUCTOS</strong></a>
+        </div>
+        <div class="col-lg-2">
+          <a href="{% url 'somos' %}" id="linkFooter"><strong>¿QUIÉNES SOMOS?</strong></a>
+        </div>
 
-          <div class="col-lg-2">
-              <strong>Síguenos</strong>
-              <br><br>
-              <div class="row">
-                  <img src="img/2000px-Facebook_font_awesome.svg.png" alt="" width="30px" height="30px"
-                      style=" margin-left: 15px;">
-                  <img src="img/twitter.png" alt="" width="30px" height="30px" style=" margin-left: 10px;">
-                  <img src="img/Instagram.png" alt="" width="30px" height="30px" style=" margin-left: 10px;">
+        <div class="col-lg-2">
+            <strong>Síguenos</strong>
+            <br><br>
+            <div class="row">
+                <img src="{% static 'img/2000px-Facebook_font_awesome.svg.png' %}" alt="" width="30px" height="30px"
+                    style=" margin-left: 15px;">
+                <img src="{% static 'img/twitter.png' %}" alt="" width="30px" height="30px" style=" margin-left: 10px;">
+                <img src="{% static 'img/Instagram.png' %}" alt="" width="30px" height="30px" style=" margin-left: 10px;">
 
-              </div>
-          </div>
-          <div class="col-lg-2">
+            </div>
+        </div>
+        <div class="col-lg-2">
 
-              <strong>Contacto</strong>
-              <br><br>
-              <div class="row">
-                  <img src="img/location.png" alt="" width="20px" height="20px"
-                      style="margin-right: 10px; margin-left: 15px;">
-                  <p>Av. Esq. Blanca 501, Maipú</p>
-              </div>
-              <div class="row">
-                  <img src="img/fono.png" alt="" width="20px" height="20px"
-                      style="margin-right: 10px; margin-left: 15px;">
-                  <p>225554000</p>
-              </div>
-              <div class="row">
-                  <img src="img/email.png" alt="" width="20px" height="20px"
-                      style="margin-right: 10px; margin-left: 15px;">
-                  <p>consulta@tumascotafeliz.cl</p>
-              </div>
-              <br><br><br>
+            <strong>Contacto</strong>
+            <br><br>
+            <div class="row">
+                <img src="{% static 'img/location.png' %}" alt="" width="20px" height="20px"
+                    style="margin-right: 10px; margin-left: 15px;">
+                <p>Av. Esq. Blanca 501, Maipú</p>
+            </div>
+            <div class="row">
+                <img src="{% static 'img/fono.png' %}" alt="" width="20px" height="20px"
+                    style="margin-right: 10px; margin-left: 15px;">
+                <p>225554000</p>
+            </div>
+            <div class="row">
+                <img src="{% static 'img/email.png' %}" alt="" width="20px" height="20px"
+                    style="margin-right: 10px; margin-left: 15px;">
+                <p>consulta@tumascotafeliz.cl</p>
+            </div>
+            <br><br><br>
 
-              <p>Cristian Jara Carter &copy; Copyright Derechos reservados.
-                  <br><br>Iconos: https://www.flaticon.com/
-              </p>
-          </div>
-      </div>
-  </footer>
+            <p>Cristian Jara Carter &copy; Copyright Derechos reservados.
+                <br><br>Iconos: https://www.flaticon.com/
+            </p>
+        </div>
+    </div>
+</footer>
+
 
   <!-- script que permite mostrar/ocultar navbar haciendo scroll -->
   <script type="text/javascript">

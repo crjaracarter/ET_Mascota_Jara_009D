@@ -4,48 +4,68 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
-  <link rel="icon" href="img/dog (1).png" />
+  {% load static %}
+  <link rel="stylesheet icon" href="{% static 'img/dog (1).png' %}">
+  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet"> 
-  <link href="css/bootstrap.css" type="text/css" rel="stylesheet"> 
-  <link rel="stylesheet" type="text/css" href="css/estilos.css">
+  {% load static %} 
+  <link href="{% static 'css/bootstrap.min.css' %}" type="text/css" rel="stylesheet"> 
+  <link href="{% static 'css/bootstrap.css' %}" type="text/css" rel="stylesheet"> 
+  <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+  
+  <link href="{% static 'calculator.css' %}" rel="stylesheet">
+  <script src="{% static 'calculator.js' %}"></script>
+
   <title>Nuestros Productos - Tu Mascota Feliz</title>
-  <link href="calculator.css" rel="stylesheet">
-  <script src="calculator.js"></script>
 </head>
 <body>
   <nav class="navbar navbar-expand-md navbar-light bg-light mb-4" id="barraNav">
-      <a href="home.html" id="logoMascotaFeliz">
-          <img src="img/dog (1).png" alt="logoMascotaFeliz" width="40px">Tu Mascota Feliz
+    {% load static %} 
+      <a href="{% url 'home' %}" id="logoMascotaFeliz">
+          <img src="{% static 'img/dog (1).png' %}" alt="logoMascotaFeliz" width="40px">Tu Mascota Feliz
       </a>
       <!-- botón hamburguesa -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
           aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
+      
+        <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                  <a class="nav-link" href="home.html">Inicio</a>
+                  <a class="nav-link" href="{% url 'home' %}">Inicio</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="galeria.html">Nuestros Productos</a>
+                  <a class="nav-link" href="{% url 'galeria' %}">Nuestros Productos</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="somos.html">¿Quiénes somos?</a>
+                  <a class="nav-link" href="{% url 'somos' %}">¿Quiénes somos?</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="feriados.html">Feriados</a>
+                <a class="nav-link" href="{% url 'feriados' %}">Feriados</a>
             </li>
           </ul>
-          <div>
-            <a href="login.html" id="userBookStop">
-                <img src="img/user-vector-icon.png" alt="usuarioMascota" width="30px"  >Registrarte/Iniciar sesión 
-            </a>
-        </div>
-      </div>
-  </nav>
+        <br>
+            
+    {% if user.is_authenticated %}
+    <div>
+        <a href="#">Bienvenid@ {{user.username}}</a>
+        <a href="" id="userBookStop" class="btn btn-success">Productos </a>
+        <a href="" id="userBookStop" class="btn btn-success">Clientes </a>
+        <a href="{% url 'logout' %}" class="btn btn-primary">Cerrar Sesión</a>
+    </div>    
+    {% else %} 
+    <div>
+        <a href="{% url 'register' %}" id="userBookStop" class="btn btn-success">Registrarte </a>
+        <a href="{% url 'login' %}" class="btn btn-primary">Iniciar Sesión </a>
+    {% endif %}    
+        
+    </div>
+</div>
+</nav>
   <main role="main" class="container">
     <div class="c-wrapper">
         <div id="carousel1" class="carousel slide" data-ride="carousel">
@@ -55,19 +75,21 @@
             </ol>
             <div class="carousel-inner" style="border-radius: 7px;">
                 <div class="carousel-item active">
-                  <img class="img-fluid" src="img/homebanner2.png"
+                  <img class="img-fluid" src="{% static 'img/homebanner.png' %}"
                         alt="">
 
                 </div>
 
         </div>
     </div>
-  <div class="container-fluid">   
+   <!-- productos --> 
+  <div class="container-fluid">  
+    {% load static %}  
     <br><br>
     <div class="row">       
       <div class="col-md">        
           <div class="card">
-            <img class="card-img-top" src="img/correa1.jpg">            
+            <img class="card-img-top" src="{% static 'img/correa1.jpg' %}">            
             <div class="card-body">
               <h4 class="card-title">Correa Retráctil</h4>
               <p class="card-text">Estas correas retráctiles están diseñadas para controlar las distancias que tu mascota avanza <br><i class="fa fa-dollar"></i> 3.190 c/u<br> <i class="fa fa-stack-exchange"></i> Stock Disponible: 14</p>
@@ -78,7 +100,7 @@
 
       <div class="col-md">        
         <div class="card">
-          <img class="card-img-top" src="img/bandana1.jpg">            
+          <img class="card-img-top" src="{% static 'img/bandana1.jpg' %}">            
           <div class="card-body">
             <h4 class="card-title">Bandanas</h4>
             <p class="card-text">Estas bandanas están diseñadas para darle glamour a tu mascota.<br><i class="fa fa-dollar"></i> 1.990 c/u<br> <i class="fa fa-stack-exchange"></i> Stock Disponible: 20</p>
@@ -89,7 +111,7 @@
 
       <div class="col-md">        
         <div class="card">
-          <img class="card-img-top" src="img/id-1.jpg">            
+          <img class="card-img-top" src="{% static 'img/id-1.jpg' %}">            
           <div class="card-body">
             <h4 class="card-title">Chapa de Identificación</h4>
             <p class="card-text">Con esta Chapa de Identificación puedes poner datos como el nombre de tu mascota, un número en caso de emergencia, entre otras cosas <br><i class="fa fa-dollar"></i>  1.490 c/u <br> <i class="fa fa-stack-exchange"></i> Stock Disponible: 2</p>
@@ -104,7 +126,7 @@
     <div class="row">       
       <div class="col-md">        
           <div class="card">
-            <img class="card-img-top" src="img/banoparagatos.jpg">            
+            <img class="card-img-top" src="{% static 'img/banoparagatos.jpg' %}">            
             <div class="card-body">
               <h4 class="card-title">Baño para gatos</h4>
               <p class="card-text">Este baño de gatos es ideal para aquellas personas que no disponen de
@@ -116,7 +138,7 @@
 
       <div class="col-md">        
         <div class="card">
-          <img class="card-img-top" src="img/jaultransporte.jpg">            
+          <img class="card-img-top" src="{% static 'img/jaultransporte.jpg' %}">            
           <div class="card-body">
             <h4 class="card-title">Jaula de transporte </h4>
             <p class="card-text">Con esta Jaula de transporte,
@@ -131,7 +153,7 @@
 
     <div class="col-md">        
         <div class="card">
-          <img class="card-img-top" src="img/rascgatos.jpg">            
+          <img class="card-img-top" src="{% static 'img/rascgatos.jpg' %}">            
           <div class="card-body">
             <h4 class="card-title">Arbol rascador para gato 112 cm</h4>
             <p class="card-text">Este Arbol rascador para gatos de 112 cm, es perfecto para que tu mascota no rompa tus cortinas. <br><i class="fa fa-dollar"></i> 29.990 c/u <br> <i class="fa fa-stack-exchange"></i> Stock Disponible: 2</p>
@@ -142,7 +164,7 @@
 </div>
 <h1>¡Calcula tus compras!</h1>
 <br>
-<form >
+<form>
     
   <table style="border: 3px solid #000; text-align:center;">
     <tr style="text-align:center;">

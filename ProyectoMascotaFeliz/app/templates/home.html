@@ -6,9 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
   
   {% load static %}
-  <link rel="icon" href="{% static 'img/dog (1).png' % }" />
-  {% load static %} 
+  <link rel="stylesheet icon" href="{% static 'img/dog (1).png' %}">
+  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  {% load static %} 
   <link href="{% static 'css/bootstrap.min.css' %}" type="text/css" rel="stylesheet"> 
   <link href="{% static 'css/bootstrap.css' %}" type="text/css" rel="stylesheet"> 
   <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
@@ -137,38 +138,47 @@
 
 </head>
 <body>
-    
-  <nav class="navbar navbar-expand-md navbar-light bg-light mb-4" id="barraNav">
-    {% load static %} 
-      <a href="{% url 'home' %}" id="logoMascotaFeliz">
-          <img src="{% static 'img/dog (1).png' %}" alt="logoMascotaFeliz" width="40px">Tu Mascota Feliz
-      </a>
-      <!-- botón hamburguesa -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-          aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
-      
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                  <a class="nav-link" href="{% url 'home' %}">Inicio</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="{% url 'galeria' %}">Nuestros Productos</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="{% url 'somos' %}">¿Quiénes somos?</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'feriados' %}">Feriados</a>
-            </li>
-          </ul>
-        <br>
+    <nav class="navbar navbar-expand-md navbar-light bg-light mb-4" id="barraNav">
+        {% load static %} 
+          <a href="{% url 'home' %}" id="logoMascotaFeliz">
+              <img src="{% static 'img/dog (1).png' %}" alt="logoMascotaFeliz" width="40px">Tu Mascota Feliz
+          </a>
+          <!-- botón hamburguesa -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+              aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+              <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'home' %}">Inicio</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'galeria' %}">Nuestros Productos</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="{% url 'somos' %}">¿Quiénes somos?</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'feriados' %}">Feriados</a>
+                </li>
+              </ul>
+            <br>
+                
+        {% if user.is_authenticated %}
         <div>
-            <a href="{% url 'login' %}" id="userBookStop">
-                <img src="{% static 'img/user-vector-icon.png' %}" alt="usuarioMascota" width="30px"  >Registrarte/Iniciar sesión 
-            </a>
+            <a href="#">Bienvenid@ {{user.username}}</a>
+            <a href="" id="userBookStop" class="btn btn-success">Productos </a>
+            <a href="" id="userBookStop" class="btn btn-success">Clientes </a>
+            <a href="{% url 'logout' %}" class="btn btn-primary">Cerrar Sesión</a>
+        </div>    
+        {% else %} 
+        <div>
+            <a href="{% url 'register' %}" id="userBookStop" class="btn btn-success">Registrarte </a>
+            <a href="{% url 'login' %}" class="btn btn-primary">Iniciar Sesión </a>
+        {% endif %}    
+            
         </div>
     </div>
   </nav> 

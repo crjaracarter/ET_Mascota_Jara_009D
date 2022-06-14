@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
+  
   {% load static %}
   <link rel="stylesheet icon" href="{% static 'img/dog (1).png' %}">
   
@@ -15,7 +16,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
-  <title>¿Quiénes Somos? - Tu Mascota Feliz</title>
+  
+  <title>Tu Mascota Feliz - Login</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-light bg-light mb-4" id="barraNav">
@@ -48,9 +50,7 @@
                 
         {% if user.is_authenticated %}
         <div>
-            <a href="#">Bienvenid@ {{user.username}}</a>
-            <a href="" id="userBookStop" class="btn btn-success">Productos </a>
-            <a href="" id="userBookStop" class="btn btn-success">Clientes </a>
+            <a href="" id="userBookStop" class="btn btn-success">Administrar </a>
             <a href="{% url 'logout' %}" class="btn btn-primary">Cerrar Sesión</a>
         </div>    
         {% else %} 
@@ -63,89 +63,29 @@
     </div>
   </nav> 
   <main role="main" class="container">
-      <div class="c-wrapper">
-          <div id="carousel1" class="carousel slide" data-ride="carousel">
-              <ol class="carousel-indicators">
-                  <li data-target="#carousel1" data-slide-to="0" class="active"></li>
-                  <li data-target="#carousel1" data-slide-to="1"></li>
-                  <li data-target="#carousel1" data-slide-to="2"></li>
-              </ol>
-              <!-- diapositivas -->
-              {% load static %} 
-              <div class="carousel-inner" style="border-radius: 7px;">
-                  <div class="carousel-item active">
-                    <img class="img-fluid" src="{% static 'img/homebanner.png' %}"
-                          alt="">
+    {% load crispy_forms_tags %}
+    <div class="container">
+        <br><br><br>
+        <div class="row">
+            <div class="col-12 col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Ingrese tus datos</h2>
+                        <hr>
+                        <form action="#" method="POST">
+                            {% csrf_token %}
+                            {{ form | crispy }}
 
-                  </div>
-                  {% load static %} 
-                  <div class="carousel-item ">
-                    <a href="{% url 'galeria' %}"><img class="img-fluid" src="{% static 'img/homebanner2.png' %}" alt="">
-
-                  </div>
-                  {% load static %} 
-                  <div class="carousel-item">
-                    <a href="{% url 'somos' %}"><img class="img-fluid" src="{% static 'img/homebanner3.png' %}" alt="">
-
-                  </div>
-              </div>
-              <!-- botones de desplazamiento a izquierda y derecha -->
-              <a class="carousel-control-prev" href="#carousel1" data-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Previous</span>
-              </a>
-              <a class="carousel-control-next" href="#carousel1" data-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Next</span>
-              </a>
-          </div>
-      </div>
-    <hr>
-    <div class="row jumbotron" id="qSomos">
-        <div class="col-lg-6">
-            <div>
-                <h1>¿Quiénes Somos?</h1><br>
-                <p>
-                    Somos un grupo de amigas que partió vendiendo productos para mascotas a través de redes sociales para ayudar a una fundación 
-                    sin fines de lucro. Sin embargo, debido a la alta demanda, se nos hizo muy dificil continuar pero ahora con nuestra página web,
-                    hemos podido consolidarnos y crear nuestra tienda "Tu Mascota Feliz". Además, hemos mejorado el sistema de venta y el
-                    despacho de nuestros productos.
-                    <br><br>
-                    Nuestra visión se basa en la ayuda y solidaridad con los animalitos de nuestro entorno, por lo que disponemos de una gran convicción de 
-                    querer hacer un mundo más feliz para tod@s
-                    <br><br>
-                    Finalmente, como tienda, tenemos la misión de dar los mejores accesorios para todas aquellas mascotas que merecen un amor eterno. Como también
-                    nos hemos comprometido ayudar fundaciones sin fines de lucro de rescates de animalitos.
-                    <br><br>
-                    A tu derecha puedes ver una imagen de Blaki, un perrito que fue salvado de un accidente y cuidado por la fundación.<br><br>
-                </p>
+                            <a href="{% url 'home' %}">Ir al Home</a>
+                            <input type="submit" class="btn btn-success" value="Ingresar" style="float:right">
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-lg-6">
-            {% load static %} 
-            <img src="{% static 'img/foto2.jpg' %}" alt="Quiénes Somos" class="img-fluid">
-        </div>
-    </div>
-    <hr><br>
-    <div class="row jumbotron" id="qSomos">
-        <div class="col-lg-8">
-            <div>
-                <h2>27 articulos recomendados para tu mascota.</h2><br>
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/C5rpa-jE6AA" 
-                title="27 articulos recomendados para tu mascota." 
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen c>
-                </iframe>
-            </div>
-        </div>
-    </div>
-    <hr><br>
-
-
-
-
-</main><br>
+    </div>   
+</body>
+</main>
 <footer>
     <div class="row col-12">
         <div class="col-lg-2">
@@ -199,20 +139,23 @@
         </div>
     </div>
 </footer>
-    <script type="text/javascript">
-        let ubicacionInicial = window.pageYOffset;
-        window.onscroll = function () {
-            let ubicacionPosterior = window.pageYOffset;
-            if (ubicacionInicial >= ubicacionPosterior) {
-                document.getElementById("barraNav").style.top = "0";
-            }
-            else {
-                document.getElementById("barraNav").style.top = "-70px";
-            }
-            ubicacionInicial = ubicacionPosterior
+
+<!-- script que permite mostrar/ocultar navbar haciendo scroll -->
+<script type="text/javascript">
+    let ubicacionInicial = window.pageYOffset;
+    window.onscroll = function () {
+        let ubicacionPosterior = window.pageYOffset;
+        if (ubicacionInicial >= ubicacionPosterior) {
+            document.getElementById("barraNav").style.top = "0";
         }
-    </script>
-  
+        else {
+            document.getElementById("barraNav").style.top = "-70px";
+        }
+        ubicacionInicial = ubicacionPosterior
+    }
+</script>
+
+
 
 </body>
 </html>

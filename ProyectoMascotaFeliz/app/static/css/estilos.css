@@ -101,9 +101,12 @@ footer{
   padding: 20px;
   color: #c5c5c5;
   background-color: #212529;
-  height: 390px;
+  height: auto;
   margin-top: 20px;
+  position:absolute
+
 }
+
 
 footer div p{
   font-size: 12px;
@@ -117,7 +120,7 @@ footer div p{
   text-decoration: none;
 }
 
-@media (max-width:991px){
+@media (max-width:1000px){
   header label{
       display: block;
   }

@@ -7,8 +7,8 @@ def home(request):
 def somos(request):
     return render (request, 'somos.html')
 
-def login(request):
-    return render (request, 'login.html')
+def register(request):
+    return render (request, 'register.html')
 
 def galeria(request):
     return render (request, 'galeria.html')
