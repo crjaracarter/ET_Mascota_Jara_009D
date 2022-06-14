@@ -169,7 +169,7 @@
         {% if user.is_authenticated %}
         <div>
             <a href="#">Bienvenid@ {{user.username}}</a>
-            <a href="" id="userBookStop" class="btn btn-success">Productos </a>
+            <a href="{% url 'producto' %}" id="userBookStop" class="btn btn-success">Productos </a>
             <a href="" id="userBookStop" class="btn btn-success">Clientes </a>
             <a href="{% url 'logout' %}" class="btn btn-primary">Cerrar Sesión</a>
         </div>    
