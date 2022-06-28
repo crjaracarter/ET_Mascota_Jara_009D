@@ -7,7 +7,10 @@ class Cliente (models.Model):
     nombreCliente = models.CharField(max_length=50, verbose_name="NombreCliente")
     apellido = models.CharField(max_length=50, verbose_name="Apellido")
     comuna = models.CharField(max_length=50, verbose_name="Comuna")
-
+    correo = models.CharField(max_length=100, verbose_name="Correo")
+    telefono = models.CharField(max_length=8, verbose_name="Telefono")
+    direccion = models.CharField(max_length=50, verbose_name="Direccion")
+ 
     def __str__(self):
         return self.idCliente
 

@@ -53,12 +53,15 @@
                       nombreCliente: "required",
                       apellido: "required",
                       comuna: "required",
+                      correo: "required",
+                      telefono:"required",
+                      direccion:"required",
                       },   
                       
                  messages: 
                   {
                   idCliente: {
-                      required: 'Ingresa la id del cliente',
+                      required: 'Ingresa el rut del cliente',
                     },
                   nombreCliente: {
                       required: 'Ingresa el nombre del cliente',
@@ -69,6 +72,17 @@
                   comuna: {
                     required: 'ingresa la comuna del cliente',
                   },
+                  correo: {
+                    required: 'ingresa el correo del cliente',
+                  },
+                  telefono: {
+                    required: 'ingresa el telefono del cliente',
+                  },
+                  direccion: {
+                    required: 'ingresa la direccion del cliente',
+                  },
+
+
                  
                    
               } 
@@ -170,7 +184,20 @@
                     <div class="form-group">
                       {{ cliente_form.comuna.label }}
                       {{ cliente_form.comuna }}
-                  </div>
+                    </div>
+                    <div class="form-group">
+                      {{ cliente_form.correo.label }}
+                      {{ cliente_form.correo }}
+                    </div>
+                    <div class="form-group">
+                      {{ cliente_form.telefono.label }}
+                      {{ cliente_form.telefono }}
+                    </div>
+                    <div class="form-group">
+                      {{ cliente_form.direccion.label }}
+                      {{ cliente_form.direccion }}
+                    </div>
+
                     <br>
                     <div class="d-flex justify-content-right">
                         <input class="btn btn-lg btn-success btn-block" type="submit"
