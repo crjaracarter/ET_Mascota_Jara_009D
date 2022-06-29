@@ -10,7 +10,7 @@ class ClienteForm(forms.ModelForm):
 
     class Meta:
         model= Cliente 
-        fields = ['idCliente', 'nombreCliente', 'apellido', 'comuna' 'correo' 'telefono' 'direccion']
+        fields = ['idCliente', 'nombreCliente', 'apellido', 'comuna', 'correo', 'telefono', 'direccion']
         labels ={
             'idCliente' : 'IdCliente',
             'nombreCliente' : 'NombreCliente',
@@ -18,7 +18,7 @@ class ClienteForm(forms.ModelForm):
             'comuna' : 'Comuna',
             'correo' : 'Correo',
             'telefono' : 'Telefono',
-            'direccion' : 'Direccion'
+            'direccion' : 'Direccion',
 
         }
 
@@ -51,7 +51,7 @@ class ClienteForm(forms.ModelForm):
                     'id': 'comuna'
                 }
             ),
-            'correo': forms.TextInput(
+            'correo': forms.EmailInput(
                 attrs={
                     'class': 'form-control', 
                     'placeholder': 'Ingresa el correo del cliente', 
@@ -69,7 +69,7 @@ class ClienteForm(forms.ModelForm):
                 attrs={
                     'class': 'form-control', 
                     'placeholder': 'Ingresa la direccion del cliente', 
-                    'id': 'direccion'
+                    'id': 'direccion',
                 }
             )    
         }
