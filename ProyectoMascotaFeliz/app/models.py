@@ -8,7 +8,7 @@ class Cliente (models.Model):
     apellido = models.CharField(max_length=50, verbose_name="Apellido")
     comuna = models.CharField(max_length=50, verbose_name="Comuna")
     correo = models.EmailField(verbose_name="Correo")
-    telefono = models.IntegerField(max_length=9, verbose_name="Telefono")
+    telefono = models.IntegerField(verbose_name="Telefono")
     direccion = models.CharField(max_length=50, verbose_name="Direccion")
  
     def __str__(self):
