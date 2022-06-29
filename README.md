@@ -1,8 +1,4 @@
 # Django_Jara009D
-
-
-
-<!-- 
 LINK API
 
 http://127.0.0.1:8000/api/lista_clientes
@@ -12,4 +8,4 @@ User: admin
 Pass: 12345
 
 
-Cristian Jara Carter  -->
+Cristian Jara Carter
