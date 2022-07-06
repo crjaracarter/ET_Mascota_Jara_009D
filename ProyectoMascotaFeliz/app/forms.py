@@ -78,10 +78,14 @@ class ProductoForm(forms.ModelForm):
 
     class Meta:
         model = Producto
-        fields = ['idProducto', 'nombreProducto']
+        fields = ['idProducto', 'nombreProducto', 'imagen']
         labels={'idProducto' : 'IdProducto',
                 'nombreProducto' : 'NombreProducto',
+                'imagen' : 'Imagen'
         }
+        
+        imagen=forms.ImageField(label="Avatar",required=False,widget=forms.FileInput(attrs={'class':'form-control'}))
+
 
 
         widgets={
@@ -98,7 +102,16 @@ class ProductoForm(forms.ModelForm):
                     'placeholder': 'Ingrese nombre del producto', 
                     'id': 'nombreProducto'
                 }
-            ) 
+            ),
+            
+            # 'imagen': forms.ImageField(
+            #     attrs={
+            #         'class': 'form-control', 
+            #         'placeholder': 'Ingrese imagen del producto', 
+            #         'id': 'imagen'
+            #     }
+            # ),
+
          }
 
        

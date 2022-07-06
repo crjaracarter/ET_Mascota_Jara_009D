@@ -146,7 +146,7 @@
         </div>
         {% if user.is_authenticated %}
             <div class="row">
-                <form method="POST" action="#" id="formulario_prod">
+                <form method="POST" action="#" id="formulario_prod" enctype="multipart/form-data">
                     {% csrf_token %}
 
                     <div class="form-group">
@@ -157,6 +157,10 @@
                     <div class="form-group">
                         {{ producto_form.nombreProducto.label }}
                         {{ producto_form.nombreProducto }}
+                    </div>
+                    <div class="form-group">
+                        {{ producto_form.imagen.label }}
+                        {{ producto_form.imagen }}
                     </div>
 
                     <br>

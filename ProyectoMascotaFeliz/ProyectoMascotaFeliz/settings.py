@@ -129,3 +129,9 @@ STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
+
+
+# Agregar imágenes
+
+MEDIA_ROOT = BASE_DIR / "files"
+MEDIA_URL = "/media/files/"

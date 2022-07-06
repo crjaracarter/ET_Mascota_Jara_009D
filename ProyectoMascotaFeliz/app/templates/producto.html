@@ -94,7 +94,11 @@
         <thead>
             <tr>
                 <th>Id Producto</th>
-                <th>Nombre del Producto</th>
+                <th>Nombre Producto</th>
+                <th>Imagen</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Stock</th>
                 <th>Modificar Producto</th>
                 <th>Eliminar Producto</th>
             </tr>
@@ -104,6 +108,12 @@
             <tr>
                 <td>{{ve.idProducto }}</td>
                 <td>{{ve.nombreProducto }}</td>
+                {% if ve.imagen %}
+                <td scope="row"><img src ="{{ ve.imagen.url }}" style="height: 150px; width: 150px;" alt="..."></td>
+                {% else %}
+                <td scope="row"><img src ="" style="height: 50px; width: 50px;" alt="No Hay Imagen"></td>       
+                {% endif %}
+
 
                 {% if user.is_authenticated %}
                         <td><a href="{% url 'form_mod_prod' ve.idProducto %}" 
@@ -114,8 +124,6 @@
                     <td><a href="#" style="color:red;">No tiene permisos para eliminar</a></td>
                 {% endif %}
             </tr>
-
-            
             {% endfor %}
         </tbody>
       </table>
@@ -125,6 +133,9 @@
     {% else %} 
         <h2 style="color:red; text-align:center">No tiene permisos para crear clientes</h2>     
     {% endif %}
+</div>
+</div>
+</div>
 </div>
 
 </main><br>

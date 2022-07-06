@@ -43,13 +43,15 @@ def mostrar_producto(request):
 
 def form_crear_producto(request):
     if request.method=='POST':
-        producto_form = ProductoForm(request.POST)
+        producto_form = ProductoForm(request.POST, request.FILES)
         if producto_form.is_valid:
             producto_form.save()
             return redirect ('producto')
     else:
         producto_form = ProductoForm()
     return render(request, 'form_crear_producto.html', {'producto_form': producto_form})
+
+    
 
 def form_mod_prod(request, id):
     producto = Producto.objects.get(idProducto=id)
