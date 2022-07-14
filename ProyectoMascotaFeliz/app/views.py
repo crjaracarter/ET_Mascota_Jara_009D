@@ -31,6 +31,12 @@ def galeria(request):
 def feriados(request):
     return render (request, 'feriados.html')
 
+def carrito(request):
+    return render (request, 'carrito.html')
+
+def tienda(request):
+    return render (request, 'tienda.html')
+
 
 
 #mostrar la informacion de las clases

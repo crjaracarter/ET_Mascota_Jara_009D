@@ -1,5 +1,5 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="es-CL">
 <head>
   <meta charset="UTF-8">
@@ -22,9 +22,57 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
  
- 
-
   <title>Tu Mascota Feliz</title>
+  
+  <script type="text/javascript">
+    var user = '{{request.user}}'
+
+    function getToken(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    var csrftoken = getToken('csrftoken')
+
+    function getCookie(name) {
+        // Split cookie string and get all individual name=value pairs in an array
+        var cookieArr = document.cookie.split(";");
+
+        // Loop through the array elements
+        for(var i = 0; i < cookieArr.length; i++) {
+            var cookiePair = cookieArr[i].split("=");
+
+            /* Removing whitespace at the beginning of the cookie name
+            and compare it with the given string */
+            if(name == cookiePair[0].trim()) {
+                // Decode the cookie value and return
+                return decodeURIComponent(cookiePair[1]);
+            }
+        }
+
+        // Return null if not found
+        return null;
+    }
+    var cart = JSON.parse(getCookie('cart'))
+
+    if (cart == undefined){
+        cart = {}
+        console.log('Cart Created!', cart)
+        document.cookie ='cart=' + JSON.stringify(cart) + ";domain=;path=/"
+    }
+    console.log('Cart:', cart)
+
+</script>
   
   <style>
     body {
@@ -71,45 +119,6 @@
   </style>
 
   <script>
-    function Cambiar()
-    {
-        var a = prompt('Escribe un nuevo titulo: ');
-        document.getElementById('titulo').innerHTML = a;
-    }
-
-
-    function MostrarFecha() 
-    {   document.getElementById('demo').innerHTML = Date();
-     
-    }
-
-
-    function CambiarMayusculas()
-    {
-        var a = document.getElementById('nombre');
-        a.value = a.value.toUpperCase();
-    }
-
-
-    function CambiaColor(a)
-    {
-        a.style.background = "orange";
-    }
-
-
-    function Mover(obj)
-    {
-        obj.innerHTML="";
-        obj.style.background="orange";
-       
-    }
-
-    function MoverFuera(obj)
-    {
-        obj.innerHTML="";
-        obj.style.background= "white";
-        
-    }
 
     $(function()
     {
@@ -170,6 +179,10 @@
                     <a class="nav-link" href="{% url 'feriados' %}">Feriados</a>
                 </li>
               </ul>
+              <a href="">
+	    		<img  id="cart-icon" src="{% static 'img/cart.png' %}">
+	    	</a>
+	    	<p id="cart-total"></p>
             <br>
                 
         {% if user.is_authenticated %}
@@ -199,7 +212,8 @@
   </nav> 
   <main class="container">
     {% block content %}
-    {% endblock %}
+
+    {% endblock content %}
   </main>
   
   <footer>
@@ -270,6 +284,7 @@
           ubicacionInicial = ubicacionPosterior
       }
   </script>
+  <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
 
 
 

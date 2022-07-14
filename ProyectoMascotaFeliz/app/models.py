@@ -3,13 +3,12 @@ from optparse import Values
 from sys import maxsize
 from django.db import models
 from django.contrib.auth.models import User
-
 from django.db.models.signals import post_save
 
 # Create your models here.
 
 class Cliente (models.Model):
-    idCliente = models.CharField(primary_key=True, max_length=50, verbose_name="idCliente")
+    idCliente = models.CharField(primary_key=True, max_length=50, verbose_name="IdCliente")
     nombreCliente = models.CharField(max_length=50, verbose_name="NombreCliente")
     apellido = models.CharField(max_length=50, verbose_name="Apellido")
     comuna = models.CharField(max_length=50, verbose_name="Comuna")
@@ -23,9 +22,9 @@ class Cliente (models.Model):
 class Producto (models.Model):
     idProducto = models.CharField(primary_key=True, max_length=9, verbose_name="IdProducto")
     nombreProducto = models.CharField(max_length=50, verbose_name="NombreProducto")
-    descripcion = models.TextField(max_length=100, verbose_name="Descripcion", default="descripcion")
-    precioProducto = models.PositiveIntegerField(verbose_name="PrecioProducto", default="0000")
-    stockProducto = models.PositiveIntegerField(verbose_name="StockProducto", default="0000")
+    descripcion = models.TextField(max_length=100, verbose_name="Descripcion" )
+    precioProducto = models.PositiveIntegerField(verbose_name="PrecioProducto")
+    stockProducto = models.PositiveIntegerField(verbose_name="StockProducto" )
 
 
 
