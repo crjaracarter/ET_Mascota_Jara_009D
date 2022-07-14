@@ -50,6 +50,9 @@
                rules: {
                       idProducto: "required",
                       nombreProducto: "required",
+                      descripcion: "required",
+                      precioProducto: "required",
+                      stockProducto: "required",
                       },   
                       
                  messages: 
@@ -60,6 +63,16 @@
                   nombreProducto: {
                       required: 'Ingresa el nombre del producto',
                   },
+                  descripcion: {
+                      required: 'Ingresa el descripcion del producto',
+                  },
+                  precioProducto: {
+                      required: 'Ingresa el precioProducto del producto',
+                  },
+                  stockProducto: {
+                      required: 'Ingresa el stockProducto del producto',
+                  },
+
                    
               } 
           }); 

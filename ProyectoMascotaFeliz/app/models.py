@@ -23,8 +23,8 @@ class Producto (models.Model):
     idProducto = models.CharField(primary_key=True, max_length=9, verbose_name="IdProducto")
     nombreProducto = models.CharField(max_length=50, verbose_name="NombreProducto")
     descripcion = models.TextField(max_length=100, verbose_name="Descripcion" )
-    precioProducto = models.PositiveIntegerField(verbose_name="PrecioProducto")
-    stockProducto = models.PositiveIntegerField(verbose_name="StockProducto" )
+    precioProducto = models.PositiveIntegerField(verbose_name="PrecioProducto", default= "0000")
+    stockProducto = models.PositiveIntegerField(verbose_name="StockProducto", default= "0000")
 
 
 

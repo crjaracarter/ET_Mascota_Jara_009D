@@ -132,14 +132,14 @@ class ProductoForm(forms.ModelForm):
                     'id': 'descripcion'
                 }
             ), 
-            'precioProducto': forms.TextInput(
+            'precioProducto': forms.NumberInput(
                 attrs={
                     'class': 'form-control', 
                     'placeholder': 'Ingrese precio del producto', 
                     'id': 'precioProducto'
                 }
             ), 
-            'stockProducto': forms.TextInput(
+            'stockProducto': forms.NumberInput(
                 attrs={
                     'class': 'form-control', 
                     'placeholder': 'Ingrese stock del producto', 
