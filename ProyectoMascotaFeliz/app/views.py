@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import Cliente
 from .models import Producto
-from .forms import ProductoForm, ClienteForm
+from .forms import ProductoForm, ClienteForm, UserRegisterForm
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
 
 # Create your views here.
 def home(request):
@@ -11,13 +13,24 @@ def somos(request):
     return render (request, 'somos.html')
 
 def register(request):
-    return render (request, 'register.html')
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            messages.success(request, f'Usuario {username} creado')
+            return redirect('home')
+    else:
+        form = UserRegisterForm()
+    context = {'form' : form }            
+    return render (request, 'register.html', context)
 
 def galeria(request):
     return render (request, 'galeria.html')
 
 def feriados(request):
     return render (request, 'feriados.html')
+
 
 
 #mostrar la informacion de las clases

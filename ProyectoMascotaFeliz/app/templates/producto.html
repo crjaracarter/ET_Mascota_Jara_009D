@@ -95,10 +95,10 @@
             <tr>
                 <th>Id Producto</th>
                 <th>Nombre Producto</th>
-                <th>Imagen</th>
-                <th>Descripción</th>
+                <th>Descripcion</th>
                 <th>Precio</th>
                 <th>Stock</th>
+                <th>Imagen</th>
                 <th>Modificar Producto</th>
                 <th>Eliminar Producto</th>
             </tr>
@@ -108,6 +108,12 @@
             <tr>
                 <td>{{ve.idProducto }}</td>
                 <td>{{ve.nombreProducto }}</td>
+                <td>{{ve.descripcion }}</td>
+                <td>{{ve.precioProducto }}</td>
+                <td>{{ve.stockProducto }}</td>
+
+
+
                 {% if ve.imagen %}
                 <td scope="row"><img src ="{{ ve.imagen.url }}" style="height: 150px; width: 150px;" alt="..."></td>
                 {% else %}

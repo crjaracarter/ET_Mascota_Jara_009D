@@ -4,13 +4,28 @@ from django.forms import widgets
 from django.forms.models import ModelChoiceField
 from django.forms.widgets import Widget
 from . models import Cliente, Producto 
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
+class UserRegisterForm(UserCreationForm):
+    username = forms.CharField()
+    nombre = forms.CharField()
+    apellido = forms.CharField()
+    email = forms.EmailField()
+    password1: forms.CharField(label='Contraseña', widget=forms.PasswordInput)
+    password2: forms.CharField(label='ConfirmaContraseña', widget=forms.PasswordInput)
+
+    class Meta:
+        model = User
+        fields = ['username','nombre', 'apellido' ,'email', 'password1', 'password2']
+        help_texts = {k:"" for k in fields}
 
 
 class ClienteForm(forms.ModelForm):
 
     class Meta:
         model= Cliente 
-        fields = ['idCliente', 'nombreCliente', 'apellido', 'comuna', 'correo', 'telefono', 'direccion']
+        fields = ['idCliente','nombreCliente', 'apellido', 'comuna', 'correo', 'telefono', 'direccion']
         labels ={
             'idCliente' : 'IdCliente',
             'nombreCliente' : 'NombreCliente',
@@ -20,13 +35,14 @@ class ClienteForm(forms.ModelForm):
             'telefono' : 'Telefono',
             'direccion' : 'Direccion',
 
+
         }
 
         widgets={
             'idCliente': forms.TextInput(
                 attrs={
                     'class': 'form-control', 
-                    'placeholder': 'Ingresa el rut del cliente', 
+                    'placeholder': 'Ingrese rut del cliente', 
                     'id': 'idCliente'
                 }
             ), 
@@ -78,10 +94,16 @@ class ProductoForm(forms.ModelForm):
 
     class Meta:
         model = Producto
-        fields = ['idProducto', 'nombreProducto', 'imagen']
+        fields = ['idProducto', 'nombreProducto', 'descripcion', 'precioProducto' , 'stockProducto' ,'imagen' ]
         labels={'idProducto' : 'IdProducto',
                 'nombreProducto' : 'NombreProducto',
-                'imagen' : 'Imagen'
+                'descripcion' : 'Descripcion',
+                'precioProducto' : 'PrecioProducto',
+                'stockProducto' : 'StockProducto',
+
+
+                'imagen' : 'Imagen',
+                
         }
         
         imagen=forms.ImageField(label="Avatar",required=False,widget=forms.FileInput(attrs={'class':'form-control'}))
@@ -102,8 +124,28 @@ class ProductoForm(forms.ModelForm):
                     'placeholder': 'Ingrese nombre del producto', 
                     'id': 'nombreProducto'
                 }
-            ),
-            
+            ), 
+            'descripcion': forms.TextInput(
+                attrs={
+                    'class': 'form-control', 
+                    'placeholder': 'Ingrese descripcion del producto', 
+                    'id': 'descripcion'
+                }
+            ), 
+            'precioProducto': forms.TextInput(
+                attrs={
+                    'class': 'form-control', 
+                    'placeholder': 'Ingrese precio del producto', 
+                    'id': 'precioProducto'
+                }
+            ), 
+            'stockProducto': forms.TextInput(
+                attrs={
+                    'class': 'form-control', 
+                    'placeholder': 'Ingrese stock del producto', 
+                    'id': 'stockProducto',
+                }
+            ), 
             # 'imagen': forms.ImageField(
             #     attrs={
             #         'class': 'form-control', 

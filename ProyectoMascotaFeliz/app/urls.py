@@ -1,5 +1,7 @@
 from django.urls import path 
 from .views import form_mod_cli, home, somos, register, galeria, feriados, mostrar_cliente, mostrar_producto, form_crear_producto, form_crear_cliente, form_mod_prod, form_del_producto, form_mod_cli, form_del_cliente
+
+
 urlpatterns=[
     path('', home, name="home"),
     path('somos/', somos, name= "somos"),

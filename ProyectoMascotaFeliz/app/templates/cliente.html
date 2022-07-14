@@ -53,17 +53,26 @@
           </ul>
         <br>
             
-    {% if user.is_authenticated %}
-    <div>
+        {% if user.is_authenticated %}
         <a href="#">Bienvenid@ {{user.username}}</a>
-        <a href="{% url 'producto' %}" id="userBookStop" class="btn btn-success">Productos </a>
-        <a href="{% url 'cliente' %}" id="userBookStop" class="btn btn-success">Clientes </a>
+        {% if user.is_superuser %}
+        <div>
+            
+            <a href="{% url 'producto' %}" id="userBookStop" class="btn btn-success">Productos </a>
+            <a href="{% url 'cliente' %}" id="userBookStop" class="btn btn-success">Clientes </a>
+            
+        </div>    
+        {% endif %}
+        {% if user.is_authenticated %}
+        
         <a href="{% url 'logout' %}" class="btn btn-primary">Cerrar Sesión</a>
-    </div>     
+
+        {% endif %}
     {% else %} 
     <div>
         <a href="{% url 'register' %}" id="userBookStop" class="btn btn-success">Registrarte </a>
-        <a href="{% url 'login' %}" class="btn btn-primary">Iniciar Sesión </a>
+        <a href="{% url 'login' %}" class="btn btn-primary">Iniciar Sesión </a>       
+    </div>   
     {% endif %}    
         
     </div>
@@ -118,11 +127,11 @@
               <div class="col-sm-12">
                 <th>Id cliente</th>
                 <th>Nombre del Cliente</th>
-                <th>Apellido del Cliente</th>
-                <th>Comuna del Cliente</th>
-                <th>Correo del Cliente</th>
-                <th>Teléfono del Cliente</th>
-                <th>Direccion del Cliente</th>
+                <th>Apellido</th>
+                <th>Comuna </th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Direccion</th>
                 <th>Modificar Cliente</th>
                 <th>Eliminar Cliente</th>
               </div>
@@ -139,7 +148,7 @@
                 <td>{{ ve.telefono }}</td>
                 <td>{{ ve.direccion }}</td>
 
-                {% if user.is_authenticated %}
+                {% if user.is_superuser %}
 
                         <td><a href="{% url 'form_mod_cli' ve.idCliente %}" 
                             class="btn btn-success">Modificar</a></td>
@@ -157,7 +166,7 @@
       </table>
 
       <div class="container">
-        {% if user.is_authenticated %}
+        {% if user.is_superuser %}
         <a href="{% url 'form_crear_cliente' %}" class="btn btn-primary">Agrega un Cliente</a>
         {% else %} 
             <h2 style="color:red; text-align:center">No tiene permisos para crear clientes</h2>     

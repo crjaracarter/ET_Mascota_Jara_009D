@@ -122,16 +122,25 @@
         <br>
             
     {% if user.is_authenticated %}
-    <div>
         <a href="#">Bienvenid@ {{user.username}}</a>
-        <a href="{% url 'producto' %}" id="userBookStop" class="btn btn-success">Productos </a>
-        <a href="{% url 'cliente' %}" id="userBookStop" class="btn btn-success">Clientes </a>
+        {% if user.is_superuser %}
+        <div>
+            
+            <a href="{% url 'producto' %}" id="userBookStop" class="btn btn-success">Productos </a>
+            <a href="{% url 'cliente' %}" id="userBookStop" class="btn btn-success">Clientes </a>
+            
+        </div>    
+        {% endif %}
+        {% if user.is_authenticated %}
+        
         <a href="{% url 'logout' %}" class="btn btn-primary">Cerrar Sesión</a>
-    </div>     
+
+        {% endif %}
     {% else %} 
     <div>
         <a href="{% url 'register' %}" id="userBookStop" class="btn btn-success">Registrarte </a>
-        <a href="{% url 'login' %}" class="btn btn-primary">Iniciar Sesión </a>
+        <a href="{% url 'login' %}" class="btn btn-primary">Iniciar Sesión </a>       
+    </div>   
     {% endif %}    
         
     </div>
@@ -163,7 +172,7 @@
             <h2>Agrega un cliente</h2>
             <br><br><br>
         </div>
-        {% if user.is_authenticated %}
+        {% if user.is_superuser %}
             <div class="row">
                 <form method="POST" action="#" id="formulario_cli">
                     {% csrf_token %}
